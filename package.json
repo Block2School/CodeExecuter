@@ -1,0 +1,17 @@
+{
+  "name": "code-executer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Block2School/CodeExecuter.git",
+  "author": "gabriel knies <gabriel.knies@epitech.eu>",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --optimize_for_size --max_old_space_size=1024 ."
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "uuid": "^8.3.2"
+  }
+}
