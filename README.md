@@ -9,6 +9,14 @@
 - JavaScript (js)
 - P̶y̶t̶h̶o̶n̶ (py) # Not supported yet
 
+## Usage
+
+> The API runs on the port 8082
+
+```
+yarn start
+```
+
 ## Endpoints
 
 ### `POST` /execute
