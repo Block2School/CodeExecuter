@@ -18,7 +18,13 @@ const compilerVersions = [
 
 const { executeJavaScript } = require('./src/languages/javascript')
 
-app.post('/', async (request, response) => {
+app.get('/', async (request, response) => {
+  return response.status(200).json({
+    'supportedLanguages': supportedLanguages,
+  })
+});
+
+app.post('/execute', async (request, response) => {
   let output = '';
   const { language = 'js', code, input = '', timeout } = request.body;
 
