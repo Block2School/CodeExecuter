@@ -11,6 +11,14 @@ RUN apt-get -y install gcc mono-mcs golang-go \
     default-jre default-jdk nodejs npm \
     python3-pip python3 curl && \
     rm -rf /var/lib/apt/lists/*
+RUN apt-get install dirmngr \
+    gnupg apt-transport-https \
+    ca-certificates \
+    software-properties-common
+
+RUN sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+RUN sudo apt install r-base
 
 ENV NODE_VERSION=16.13.2
 RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash

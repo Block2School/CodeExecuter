@@ -11,13 +11,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const supportedLanguages = ['js', 'py'];
+const supportedLanguages = ['js', 'py', 'R'];
 const compilerVersions = [
   '16.13.2',
 ]
 
 const { executeJavaScript } = require('./src/languages/javascript')
 const { executePython } = require('./src/languages/python')
+const { executeR } = require('./src/languages/r')
 
 app.get('/', async (request, response) => {
   return response.status(200).json({
@@ -51,6 +52,9 @@ app.post('/execute', async (request, response) => {
       break;
     case 'py':
       output = await executePython(codeFile, input, timeout);
+      break;
+    case 'R':
+      output = await executeR(codeFile, input, timeout);
       break;
   }
   removeCodeFile(codeFile.split(".")[0], language);
