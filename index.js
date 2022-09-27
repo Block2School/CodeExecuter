@@ -11,7 +11,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const supportedLanguages = ['js', 'py', 'R'];
+const supportedLanguages = ['js', 'py', 'R', 'c', 'cpp'];
 const compilerVersions = [
   '16.13.2',
 ]
@@ -19,6 +19,8 @@ const compilerVersions = [
 const { executeJavaScript } = require('./src/languages/javascript')
 const { executePython } = require('./src/languages/python')
 const { executeR } = require('./src/languages/r')
+const { executeC } = require('./src/languages/c')
+const { executeCpp } = require('./src/languages/cpp')
 
 app.get('/', async (request, response) => {
   return response.status(200).json({
@@ -55,6 +57,12 @@ app.post('/execute', async (request, response) => {
       break;
     case 'R':
       output = await executeR(codeFile, input, timeout);
+      break;
+    case 'c':
+      output = await executeC(codeFile, input, timeout);
+      break;
+    case 'cpp':
+      output = await executeCpp(codeFile, input, timeout);
       break;
   }
   removeCodeFile(codeFile.split(".")[0], language);

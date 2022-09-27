@@ -14,6 +14,7 @@ function execCommand(command, args, inputs, timeout = 8) {
 
     if (inputs) {
       if (typeof inputs === 'string') inputs = [inputs];
+      console.log('inputs == ', inputs)
       inputs.forEach((input) => {
         runCommand.stdin.write(`${input}\n`);
       });
