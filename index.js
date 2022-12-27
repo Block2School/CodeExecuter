@@ -11,13 +11,16 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const supportedLanguages = ['js', 'py'];
+const supportedLanguages = ['js', 'py', 'R', 'c', 'cpp'];
 const compilerVersions = [
   '16.13.2',
 ]
 
 const { executeJavaScript } = require('./src/languages/javascript')
 const { executePython } = require('./src/languages/python')
+const { executeR } = require('./src/languages/r')
+const { executeC } = require('./src/languages/c')
+const { executeCpp } = require('./src/languages/cpp')
 
 app.get('/', async (request, response) => {
   return response.status(200).json({
@@ -27,7 +30,12 @@ app.get('/', async (request, response) => {
 
 app.post('/execute', async (request, response) => {
   let output = '';
-  const { language = 'js', code, input = '', timeout } = request.body;
+  const {
+    language = 'js',
+    code,
+    input = '',
+    timeout
+  } = request.body;
 
   if (!supportedLanguages.includes(language)) {
     return response.status(400).send('Invalid language');
@@ -41,11 +49,20 @@ app.post('/execute', async (request, response) => {
   console.log(codeFile, code, input);
 
   switch (language) {
-    case "js":
+    case 'js':
       output = await executeJavaScript(codeFile, input, timeout);
       break;
     case 'py':
       output = await executePython(codeFile, input, timeout);
+      break;
+    case 'R':
+      output = await executeR(codeFile, input, timeout);
+      break;
+    case 'c':
+      output = await executeC(codeFile, input, timeout);
+      break;
+    case 'cpp':
+      output = await executeCpp(codeFile, input, timeout);
       break;
   }
   removeCodeFile(codeFile.split(".")[0], language);
