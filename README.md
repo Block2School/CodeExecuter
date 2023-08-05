@@ -7,7 +7,10 @@
 ## Currently supported languages
 
 - JavaScript (js)
-- P̶y̶t̶h̶o̶n̶ (py) # Not supported yet
+- Python (py)
+- R (R)
+- C (c)
+- C++ (cpp)
 
 ## Usage
 
