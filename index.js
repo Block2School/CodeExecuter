@@ -34,7 +34,8 @@ app.post('/execute', async (request, response) => {
     language = 'js',
     code,
     input = '',
-    timeout
+    timeout,
+    id = -1
   } = request.body;
 
   if (!supportedLanguages.includes(language)) {
@@ -44,9 +45,9 @@ app.post('/execute', async (request, response) => {
     return response.status(400).send('Invalid code');
   }
 
-  const codeFile = createCodeFile(language, code);
+  const codeFile = createCodeFile(language, code, id);
 
-  console.log(codeFile, code, input);
+  console.log(codeFile, code, input, id);
 
   switch (language) {
     case 'js':
