@@ -29,6 +29,7 @@ yarn start
 | "code"     | Should contain the script that needs to be executed                                                                           |
 | "language" | Language that the script is written in for example: java, cpp, etc. (Check language above) |
 | "input"    | In case the script requires any kind of input for execution, leave empty if no input required                                 |
+| "id"       | Give the id of the tutorial to append the hidden main to the code and execute it   |
 
 ### Example Body
 
