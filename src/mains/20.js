@@ -1,7 +1,13 @@
-// const assert = require("node:assert").strict;
+const assert = require("node:assert").strict;
 
-// (() => {
-//     const ret = displayList();
-//     assert.strictEqual(ret, true);
-//     console.log("OK!");
-// })();
+(() => {
+   const myList = [
+        "Hi",
+        "B2S",
+        "Block2School so good",
+        "This tutorial is for loop"
+    ];
+    const ret = displayList(myList);
+    assert.strictEqual(ret, 1);
+    console.log("OK!");
+})();
