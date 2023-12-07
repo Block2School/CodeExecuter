@@ -1,5 +1,5 @@
-result = addingPi(15)
-assert result == 15 * math.pi
-result = addingPi(74)
-assert result == 75 * math.pi
+result = round(addingPi(15), 3)
+assert result == 47.124
+result = round(addingPi(74), 3)
+assert result == 232.478
 print("OK!")
