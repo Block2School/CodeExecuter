@@ -13,8 +13,12 @@ const createCodeFile = (language, code, id) => {
     fileName = `${jobID}.${language}`;
 
   if (id != -1) {
-    const main = fs.readFileSync(path.join(__dirname, `mains/${id}.${language}`), {encoding: 'utf-8', flag: 'r'})
-    fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString() + "\n" + main);
+    try {
+      const main = fs.readFileSync(path.join(__dirname, `mains/${id}.${language}`), {encoding: 'utf-8', flag: 'r'})
+      fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString() + "\n" + main);
+    } catch (error) {
+      fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString());
+    }
   } else {
     fs.writeFileSync(path.join(__dirname, `codes/${fileName}`), code?.toString());
   }
